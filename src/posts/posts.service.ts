@@ -25,4 +25,12 @@ export class PostsService {
             new: true
         });
     }
+
+    async voteUp(postId: string): Promise<Posts> {
+        return this.postsModel.findByIdAndUpdate(postId, {
+            $inc: { nbLike: 1 }
+        }, {
+            new: true
+        });
+    }
 }

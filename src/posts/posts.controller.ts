@@ -23,4 +23,9 @@ export class PostsController {
     updatePost(@Param('id') postId: string, @Body() newPost: PostsDto) : Promise<Posts> {
         return this.postsService.updatePost(postId, newPost);
     }
+
+    @Patch('/vote/:id')
+    voteUpPost(@Param('id') postId: string) : Promise<Posts> {
+        return this.postsService.voteUp(postId);
+    }
 }
