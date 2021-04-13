@@ -3,6 +3,7 @@ export class PostsDto {
     readonly detail: string;
     readonly image: string;
     
+    nbLike: number;
     createdAt: Date;
     updatedAt: Date;
 }

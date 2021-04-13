@@ -12,6 +12,7 @@ export class PostsService {
 
     async create(post: PostsDto): Promise<Posts> {
         post.createdAt = new Date();
+        post.nbLike = 0;
         const createdPost = new this.postsModel(post);
         return await createdPost.save();
     }
