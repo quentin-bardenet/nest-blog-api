@@ -12,14 +12,14 @@ export class PostsController {
     return this.postsService.create(post);
   }
 
-  @Get('')
-  getPosts(): Promise<Posts[]> {
-    return this.postsService.findAll();
-  }
-
   @Get(':id')
   getPostById(@Param('id') postId: string) {
     return this.postsService.findById(postId);
+  }
+
+  @Get('')
+  getPosts(): Promise<Posts[]> {
+    return this.postsService.findAll();
   }
 
   @Patch(':id')
