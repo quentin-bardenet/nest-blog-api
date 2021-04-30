@@ -5,27 +5,33 @@ import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
-    constructor(
-        private readonly postsService: PostsService,
-    ) {}
+  constructor(private readonly postsService: PostsService) {}
 
-    @Post('')
-    createPost(@Body() post: PostsDto): Promise<Posts> {
-        return this.postsService.create(post);
-    }
+  @Post('')
+  createPost(@Body() post: PostsDto): Promise<Posts> {
+    return this.postsService.create(post);
+  }
 
-    @Get('')
-    getPosts(): Promise<Posts[]> {
-        return this.postsService.findAll();
-    }
+  @Get('')
+  getPosts(): Promise<Posts[]> {
+    return this.postsService.findAll();
+  }
 
-    @Patch(':id')
-    updatePost(@Param('id') postId: string, @Body() newPost: PostsDto) : Promise<Posts> {
-        return this.postsService.updatePost(postId, newPost);
-    }
+  @Get(':id')
+  getPostById(@Param('id') postId: string) {
+    return this.postsService.findById(postId);
+  }
 
-    @Patch('/vote/:id')
-    voteUpPost(@Param('id') postId: string) : Promise<Posts> {
-        return this.postsService.voteUp(postId);
-    }
+  @Patch(':id')
+  updatePost(
+    @Param('id') postId: string,
+    @Body() newPost: PostsDto,
+  ): Promise<Posts> {
+    return this.postsService.updatePost(postId, newPost);
+  }
+
+  @Patch('/vote/:id')
+  voteUpPost(@Param('id') postId: string): Promise<Posts> {
+    return this.postsService.voteUp(postId);
+  }
 }
